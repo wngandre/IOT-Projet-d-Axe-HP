@@ -41,7 +41,3 @@ while True:
     
     print(house)
     utime.sleep(1)
-    
-    pwm_ledR.duty_u16(maisons[house][0])
-    pwm_ledG.duty_u16(maisons[house][1])
-    pwm_ledB.duty_u16(maisons[house][2])
