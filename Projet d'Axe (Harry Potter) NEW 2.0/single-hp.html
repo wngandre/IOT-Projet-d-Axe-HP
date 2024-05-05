@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="background-container">
+        <header>
+            <nav class="main-header">
+                <div class="header-center">
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="hp.html">Collection</a></li>
+                        <li><img class="logo" src="./img/logo.png" alt="logo" width="310"></li>
+                        <li><a href="FAQ.html">À propos de nous</a></li>
+                        <li><a href="sign-in.html">Connexion</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        
+        <div id="character"></div>
+
+
+    <footer>
+        <div class="footer-rights">
+            <p>© 2024 Harry Potter Project</p>
+        </div>
+    </footer>
+
+    <script>
+        function fetchCharacter() {
+            let url = window.location.search
+            let slug = new URLSearchParams(url).get('slug')
+            return fetch('https://hp-api.lainocs.fr/characters/' + slug)
+                .then((response) => response.json())
+        }
+
+        async function displayCharacter() {
+            const data = await fetchCharacter()
+            document.querySelector('#character').innerHTML = `
+                <h1>${data.name}</h1>
+                <img class="characters" src="${data.image}" alt="${data.name}">
+                <p>Eyes : ${data.eyes}</p>
+                <p>Hairs : ${data.hairs}</p>
+                <p>${data.birthday}</p>
+                <p>Patronus : ${data.patronus}</p>
+                <p>Role : ${data.role}</p>
+                <p>House : ${data.house}</p>
+                <p>Actor : ${data.actor}</p>
+                <a class="back-btn" href="hp.html">Back</a>
+            `
+        }
+
+        displayCharacter()
+    </script>
+
+    <style>
+
+#character {
+    text-align: center;
+}
+
+.characters {
+    height: 300px;
+    border: 2px solid #ff8c00;
+    padding: 0 30px;
+    border-radius: 5px;
+    margin: 20px;
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    font-size: 2em;
+    margin: 20px;
+    color: #fff;
+}
+
+p {
+    margin: 20px;
+    color: #fff;
+}
+
+.back-btn {
+    text-decoration: none;
+    font-size: 18px;
+    color: #ff8c00;
+    border: 2px solid #ff8c00;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.back-btn:hover {
+    background-color: #ff8c00;
+    box-shadow: 0 0 2px #ff8c00, 0 0 10px #ff8c00, 0 0 20px #ff8c00;
+    transition: 0.5s;
+    color: black;
+}
+
+    </style>
+</body>
+</html>

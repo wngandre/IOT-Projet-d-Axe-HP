@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="background-container">
+        <header>
+            <nav class="main-header">
+                <div class="header-center">
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="hp.html">Collection</a></li>
+                        <li><img class="logo" src="./img/logo.png" alt="logo" width="310"></li>
+                        <li><a href="FAQ.html">À propos de nous</a></li>
+                        <li><a href="sign-in.html">Connexion</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        
+        <div id="characters"></div>
+    </div>
+    
+    <footer>
+        <div class="footer-rights">
+            <p>© 2024 Harry Potter Project</p>
+        </div>
+    </footer>
+
+    <script>
+    function fetchCharacters() {
+        return fetch('https://hp-api.lainocs.fr/characters')
+        .then((response) => response.json())
+    }
+
+    async function displayCharacters() {
+        const data = await fetchCharacters()
+        document.querySelector('#characters')
+        data.forEach(character => {
+            document.querySelector('#characters').innerHTML += `
+            <a href="single-hp.html?slug=${character.slug}">
+                <div class="character">
+                    <h2>${character.name}</h2>
+                    <img class="characters" src="${character.image}" alt="${character.name}">
+                </div>
+            </a>
+            `
+        })
+    }
+
+    displayCharacters()
+
+    // Fonction pour envoyer une requête POST
+
+    function sendPostRequest(house) {
+  fetch('http://10.2.164.3:3000', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ house: house }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
+    </script>
+
+    <style>
+
+#characters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.character {
+    margin: 30px;
+    padding: 10px;
+}
+
+.characters {
+    height: 240px;
+}
+
+h2 {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    margin: 15px;
+    border: 2px solid #ff8c00;
+    border-radius: 10px;
+    backdrop-filter: blur(15px);
+}
+
+a:hover {
+    background-color: #ff8c00;
+    box-shadow: 0 0 10px #ff8c00, 0 0 40px #ff8c00, 0 0 80px #ff8c00;
+    transition: 0.5s;
+}
+    </style>
+</body>
+</html>
