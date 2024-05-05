@@ -42,15 +42,15 @@
         async function displayCharacter() {
             const data = await fetchCharacter()
             document.querySelector('#character').innerHTML = `
-                <h1>${data.name}</h1>
+                <h1 class="name">${data.name}</h1>
                 <img class="characters" src="${data.image}" alt="${data.name}">
-                <p>Eyes : ${data.eyes}</p>
-                <p>Hairs : ${data.hairs}</p>
-                <p>${data.birthday}</p>
-                <p>Patronus : ${data.patronus}</p>
-                <p>Role : ${data.role}</p>
-                <p>House : ${data.house}</p>
-                <p>Actor : ${data.actor}</p>
+                <p class="desc-character">Eyes : ${data.eyes}</p>
+                <p class="desc-character">Hairs : ${data.hairs}</p>
+                <p class="desc-character">${data.birthday}</p>
+                <p class="desc-character">Patronus : ${data.patronus}</p>
+                <p class="desc-character">Role : ${data.role}</p>
+                <p class="desc-character">House : ${data.house}</p>
+                <p class="desc-character">Actor : ${data.actor}</p>
                 <a class="back-btn" href="hp.html">Back</a>
             `
         }
@@ -58,48 +58,5 @@
         displayCharacter()
     </script>
 
-    <style>
-
-#character {
-    text-align: center;
-}
-
-.characters {
-    height: 300px;
-    border: 2px solid #ff8c00;
-    padding: 0 30px;
-    border-radius: 5px;
-    margin: 20px;
-    backdrop-filter: blur(10px);
-}
-
-h1 {
-    font-size: 2em;
-    margin: 20px;
-    color: #fff;
-}
-
-p {
-    margin: 20px;
-    color: #fff;
-}
-
-.back-btn {
-    text-decoration: none;
-    font-size: 18px;
-    color: #ff8c00;
-    border: 2px solid #ff8c00;
-    padding: 5px 15px;
-    border-radius: 5px;
-}
-
-.back-btn:hover {
-    background-color: #ff8c00;
-    box-shadow: 0 0 2px #ff8c00, 0 0 10px #ff8c00, 0 0 20px #ff8c00;
-    transition: 0.5s;
-    color: black;
-}
-
-    </style>
 </body>
 </html>

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Collection</title>
 </head>
 <body>
     <div class="background-container">
@@ -21,7 +22,16 @@
                 </div>
             </nav>
         </header>
-        
+
+    <section>
+        <div class="hp-top">
+            <h1>&#x2728;Collection Harry Potter&#x2728;</h1>
+            <p>Retrouvez toutes les cartes disponible d'Harry Potter !</p>
+                <div id="searchWrapper">
+                    <input type="text" name="searchBar" id="searchBar" placeholder="Rechercher une carte ..."/>
+                </div>
+        </div>
+    </section>
         <div id="characters"></div>
     </div>
     
@@ -42,9 +52,9 @@
         document.querySelector('#characters')
         data.forEach(character => {
             document.querySelector('#characters').innerHTML += `
-            <a href="single-hp.html?slug=${character.slug}">
+            <a class="character-card" href="single-hp.html?slug=${character.slug}">
                 <div class="character">
-                    <h2>${character.name}</h2>
+                    <h2 class="name">${character.name}</h2>
                     <img class="characters" src="${character.image}" alt="${character.name}">
                 </div>
             </a>
@@ -53,63 +63,9 @@
     }
 
     displayCharacters()
-
-    // Fonction pour envoyer une requête POST
-
-    function sendPostRequest(house) {
-  fetch('http://10.2.164.3:3000', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ house: house }),
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log('Success:', data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-}
     </script>
-
-    <style>
-
-#characters {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.character {
-    margin: 30px;
-    padding: 10px;
-}
-
-.characters {
-    height: 240px;
-}
-
-h2 {
-    text-align: center;
-}
-
-a {
-    text-decoration: none;
-    color: #fff;
-    display: block;
-    margin: 15px;
-    border: 2px solid #ff8c00;
-    border-radius: 10px;
-    backdrop-filter: blur(15px);
-}
-
-a:hover {
-    background-color: #ff8c00;
-    box-shadow: 0 0 10px #ff8c00, 0 0 40px #ff8c00, 0 0 80px #ff8c00;
-    transition: 0.5s;
-}
-    </style>
+    
+    <script src="./js/searchbar.js"></script>
+    
 </body>
 </html>
