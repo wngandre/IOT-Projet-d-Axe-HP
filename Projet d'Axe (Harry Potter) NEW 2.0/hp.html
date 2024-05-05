@@ -63,6 +63,25 @@
     }
 
     displayCharacters()
+
+        // Fonction pour envoyer une requête POST
+
+    function sendPostRequest(house) {
+  fetch('http://10.2.164.3:3000/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ house: house }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+}
     </script>
     
     <script src="./js/searchbar.js"></script>
